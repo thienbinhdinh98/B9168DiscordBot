@@ -1,5 +1,10 @@
 .env
-.env.*
-node_modules/*
-node_modules
-API_KEY
+__pycache__/
+*.pyc
+*.pyo
+*.log
+data/*.db
+.vscode/
+.idea/
+venv/
+*.json

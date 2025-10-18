@@ -1,0 +1,12 @@
+services:
+  discord-bot:
+    build: .
+    container_name: qidian-discord-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ${DISCORD_DATA_PATH}:/app/data/qidian
+      - ${DISCORD_LOG_PATH}:/app/logs
+    environment:
+      - TZ=Etc/UTC
