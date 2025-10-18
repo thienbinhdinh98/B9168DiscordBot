@@ -373,7 +373,7 @@ Always format as "Chương {number}: {title}"."""
             local_last_chapter = novel.get('last_chapter_title') or "N/A"
             remote_last_chapter = self.get_last_chapter(await self.get_soup(url))
             new_chapter_found = remote_last_chapter != local_last_chapter
-            logger.info(f"Checking novel: {novel.get('original_title')} | Local: {local_last_chapter} | Remote: {remote_last_chapter} | New Chapter: {new_chapter_found}")
+            logger.info(f"Checking novel: {novel.get('translated_title')} | Local: {local_last_chapter} | Remote: {remote_last_chapter} | New Chapter: {new_chapter_found}")
             if new_chapter_found:
                 logger.info(f"New chapter detected for {novel.get('translated_title')}: {remote_last_chapter}")
                 last_chapter_title_translated = self.get_chapter_title_translated(remote_last_chapter)
@@ -382,8 +382,7 @@ Always format as "Chương {number}: {title}"."""
                 logger.info(f"Updated local record for {novel.get('translated_title') or novel.get('original_title')}")
                 # Push notification to Discord channel for new chapter
                 await self.push_chapter_update(novel)
-            time.sleep(10)  # To avoid hitting rate limits
-
+            time.sleep(3)  # To avoid hitting rate limits
             
         # Write back all novels after checking updates
         with open(DATA_LOC, 'w', encoding='utf-8') as f:
