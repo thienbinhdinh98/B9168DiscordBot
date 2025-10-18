@@ -372,7 +372,7 @@ Always format as "Chương {number}: {title}"."""
             url = novel.get('url')
             local_last_chapter = novel.get('last_chapter_title') or "N/A"
             remote_last_chapter = self.get_last_chapter(await self.get_soup(url))
-            new_chapter_found = remote_last_chapter != local_last_chapter
+            new_chapter_found = remote_last_chapter != "N/A" and remote_last_chapter != local_last_chapter
             logger.info(f"Checking novel: {novel.get('translated_title')} | Local: {local_last_chapter} | Remote: {remote_last_chapter} | New Chapter: {new_chapter_found}")
             if new_chapter_found:
                 logger.info(f"New chapter detected for {novel.get('translated_title')}: {remote_last_chapter}")
